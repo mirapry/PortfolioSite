@@ -1,0 +1,338 @@
+/* ChatGPT-26 application page — paper stack (sheet white matched to artwork JPEGs) */
+
+.wwm-app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* Matches the flat white in the sketch JPGs */
+  background: #ffffff;
+}
+
+.wwm-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #ffffff;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+}
+
+.wwm-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.wwm-project {
+  flex: 0 1 22rem;
+  max-width: 22rem;
+  text-align: left;
+  align-self: center;
+}
+
+.wwm-project__headline {
+  margin: 0 0 0.35rem;
+  font-family: Georgia, 'Times New Roman', ui-serif, serif;
+  font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #111;
+  letter-spacing: -0.015em;
+}
+
+.wwm-project__subheadline {
+  margin: 0 0 0.45rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #444;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.wwm-project__submission-line {
+  margin: 0.45rem 0 0.65rem;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: #666;
+  font-weight: 400;
+}
+
+.wwm-project__lede {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.58;
+  color: #333;
+  font-weight: 400;
+}
+
+.wwm-project__lede:has(+ .wwm-project__submission-line) {
+  margin-bottom: 0;
+}
+
+@media (max-width: 840px) {
+  .wwm-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+
+  .wwm-project {
+    flex: none;
+    max-width: none;
+    align-self: stretch;
+  }
+}
+
+.wwm-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 1rem 0 1rem;
+  min-height: 0;
+}
+
+.wwm-stack-wrap {
+  flex: 0 1 auto;
+  width: 100%;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  align-self: center;
+}
+
+.wwm-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: min(58vh, 440px);
+  touch-action: pan-y;
+}
+
+/* Sheet = same white as sketch background; paper edge + tooth */
+.wwm-paper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 1px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 0 0 1px rgba(0, 0, 0, 0.02),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 14px 36px rgba(0, 0, 0, 0.07);
+  transform-origin: 90% 8%;
+  transition: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wwm-paper.is-top {
+  pointer-events: auto;
+  cursor: pointer;
+  transition:
+    transform 0.58s cubic-bezier(0.25, 0.9, 0.2, 1),
+    opacity 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.wwm-paper.is-top:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 4px;
+}
+
+.wwm-paper.is-peeling {
+  pointer-events: none;
+}
+
+.wwm-paper__inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0.85rem 0.7rem;
+  box-sizing: border-box;
+}
+
+/* Seamless with drawing: no gray mat */
+.wwm-paper__img {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 0;
+}
+
+.wwm-paper__img img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.wwm-paper__desc {
+  margin: 0.55rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.8125rem;
+  line-height: 1.52;
+  color: #252525;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.wwm-paper__link {
+  color: #1a4d8c;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.wwm-paper__link:hover {
+  color: #0d3a6e;
+}
+
+.wwm-paper__link:focus-visible {
+  outline: 2px solid #1a4d8c;
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+.wwm-hint {
+  margin: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: #1a1a1a;
+  opacity: 0.22;
+  text-align: center;
+}
+
+.wwm-done {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  min-height: min(50vh, 320px);
+}
+
+.wwm-done__text {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: #444;
+}
+
+.wwm-restack {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 0.8125rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.wwm-restack:hover {
+  background: #fafafa;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wwm-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem calc(1rem + env(safe-area-inset-bottom, 0));
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.wwm-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.wwm-footer__home {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.32;
+  transition: opacity 0.2s ease;
+}
+
+.wwm-footer__home:hover {
+  opacity: 0.72;
+}
+
+.wwm-foot-btn {
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  color: #1a1a1a;
+  opacity: 0.3;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.wwm-foot-btn:hover:not(:disabled) {
+  opacity: 0.72;
+}
+
+.wwm-foot-btn:disabled {
+  opacity: 0.1;
+  cursor: default;
+  text-decoration: none;
+}
+
+.wwm-foot-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  opacity: 0.24;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.75rem;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wwm-paper {
+    transition: none;
+  }
+  .wwm-paper.is-peeling {
+    opacity: 0;
+    transform: none !important;
+  }
+}
