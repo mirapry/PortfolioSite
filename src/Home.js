@@ -15,7 +15,7 @@ function ArtsyHome() {
     <div className="App">
         <div className="center-container">
             <div className="laptop-container">
-                    <img className='home-sketch-img' src='MiraScreaming.png' alt="mira pry"/>
+                    <img className='home-sketch-img' src='MiraIsElf.png' alt="mira pry"/>
 
                     <Link to="https://www.cs.stanford.edu/" target="_blank"><img className='sticker stanford' src='stickers/stanford.png' alt="stanford logo sticker"/></Link>
                     <Link to="https://www.nuevaschool.org/" target="_blank"><img className='sticker nueva' src='stickers/nueva.png' alt="nueva logo sticker"/></Link>
@@ -74,4 +74,3 @@ function ArtsyHome() {
 }
 
 export default ArtsyHome;
-
